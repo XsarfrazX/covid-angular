@@ -1,22 +1,58 @@
-<div class="parent">
-    <mat-button-toggle #toggleBtnTotal (click)="displayTotalPieChart()">Total Status</mat-button-toggle>
-    <div *ngIf="toggleBtnTotal.checked">
-        <div *ngIf="chart[0]">
-        <canvas id="canvasTotalPie">{{chart[0]}}</canvas>
-        </div>
+<mat-tab-group #tabRef (selectedTabChange)="logChange(tabRef.selectedIndex)">
+
+    <mat-tab label="Tabular Data">
+
+        <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+            {{element}}
+            <!-- State Column -->
+            <ng-container matColumnDef="State">
+              <th mat-header-cell *matHeaderCellDef> State </th>
+              <td mat-cell *matCellDef="let elementS"> {{elementS.State}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="Confirmed">
+              <th mat-header-cell *matHeaderCellDef> Confirmed</th>
+              <td mat-cell *matCellDef="let element"> {{element.Confirmed}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="Active">
+                <th mat-header-cell *matHeaderCellDef> Active </th>
+                <td mat-cell *matCellDef="let element"> {{element.Active}} </td>
+              </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="Recovered">
+              <th mat-header-cell *matHeaderCellDef> Recovered </th>
+              <td mat-cell *matCellDef="let element"> {{element.Recovered}} </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="Deaths">
+              <th mat-header-cell *matHeaderCellDef> Deaths </th>
+              <td mat-cell *matCellDef="let element"> {{element.Deaths}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': row.isSeen }"></tr>
+          </table>
+
+    </mat-tab> 
+
+  <mat-tab label="Overall Status Pie Chart">
+    <canvas id="canvasTotalPie">{{ chart[0] }}</canvas>
+  </mat-tab>
+  <mat-tab label="Statewise Bar graph">
+    <div *ngIf="chart[1]">
+      <canvas id="canvasStateBarChart">{{ chart[1] }}</canvas>
     </div>
+  </mat-tab>
 
+  <mat-tab label="More information"></mat-tab>
+</mat-tab-group>
 
-    <mat-button-toggle #toggleBtnTotal1 (click)="displayStateBarChart()">Number of Cases Statewise</mat-button-toggle>
-    <div *ngIf="toggleBtnTotal1.checked">
-        <div *ngIf="chart[1]">
-        <canvas id="canvasStateBarChart">{{chart[1]}}</canvas>
-        </div>
-    </div>
-
-    <div>
-        <button mat-raised-button routerLink="/charts" >More Information</button>
-      </div>
-
-</div>
 

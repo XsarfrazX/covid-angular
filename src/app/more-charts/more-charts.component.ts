@@ -2,6 +2,22 @@ import { Component, OnInit } from "@angular/core";
 import { GetDataService } from "../get-data.service";
 import { Chart } from "chart.js";
 import { element } from 'protractor';
+import { Router, Data } from '@angular/router';
+
+//For tabluar informations
+export interface DataTable{
+  state: string;
+  totalCount: string;
+  recoveredCount: string;
+  deathCount: string;
+}
+export interface DataTable2{
+  State: string;
+  Confirmed: string;
+  Active: string;
+  Recovered: string;
+  Deaths: string;
+}
 @Component({
   selector: "app-more-charts",
   templateUrl: "./more-charts.component.html",
@@ -10,17 +26,47 @@ import { element } from 'protractor';
 export class MoreChartsComponent implements OnInit {
 
   chart=[]
-  constructor(private _data: GetDataService) {}
-  result: any;
+  constructor(private _data: GetDataService, private router: Router) {}
+  result: any; //result from googlesheets
+  displayedColumns:string[]=['State', 'Confirmed', 'Active', 'Recovered', 'Deaths'] // for tablur data
+  dataSource:DataTable2[]=[]; //for tabular data
+  dataSource2:DataTable2[]=[]; //for tabular data
+  
+
   ngOnInit() {
     this._data.getData().subscribe((res) => {
       this.result = this.csvToArray(res);
       // console.log('88888888888888888888888')
        console.log(this.result);
 
+       // initialse chart data
        this.displayTotalPieChart();
        this.displayStateBarChart();
+    let states=[]
+    this.result.forEach(element=>states.push(element.State))
+    
+    console.log(states)
 
+    let confirmed=[]
+    this.result.forEach(element=>confirmed.push(element.Confirmed))
+    
+  
+    let active=[]
+    this.result.forEach(element=>active.push(element.Active))
+
+    let deaths=[]
+    this.result.forEach(element=>deaths.push(element.Deaths))
+  
+
+    let recovered=[]
+    this.result.forEach(element=>recovered.push(element.Recovered))
+  
+    for(var i=0;i<states.length;i++)
+       this.dataSource.push({State: states[i],Confirmed: confirmed[i],Active: active[i],Recovered: recovered[i], Deaths: deaths[i]})
+   
+      this.dataSource2=this.dataSource
+       console.log("this is data")
+       console.log(this.dataSource2)
       // this.chart=new Chart('canvas',{
       //   type: 'pie',
       //   data:{
@@ -160,6 +206,15 @@ export class MoreChartsComponent implements OnInit {
       }
     })
 
+  }
+
+  logChange(index){
+    if(index==1)
+    this.displayTotalPieChart();
+    else if(index==2)
+    this.displayStateBarChart();
+    else if(index==3)
+    this.router.navigate(['charts']);
   }
 
 }
