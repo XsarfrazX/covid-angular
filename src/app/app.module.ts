@@ -7,18 +7,26 @@ import { SafePipe} from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from './material/material.module';
 
+import {GetDataService} from './get-data.service';
+import {HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { MoreChartsComponent } from './more-charts/more-charts.component';
+import { ChartsComponent } from './charts/charts.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SafePipe
+    SafePipe,
+    MoreChartsComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [GetDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

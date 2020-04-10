@@ -1,0 +1,22 @@
+<div class="parent">
+    <mat-button-toggle #toggleBtnTotal (click)="displayTotalPieChart()">Total Status</mat-button-toggle>
+    <div *ngIf="toggleBtnTotal.checked">
+        <div *ngIf="chart[0]">
+        <canvas id="canvasTotalPie">{{chart[0]}}</canvas>
+        </div>
+    </div>
+
+
+    <mat-button-toggle #toggleBtnTotal1 (click)="displayStateBarChart()">Number of Cases Statewise</mat-button-toggle>
+    <div *ngIf="toggleBtnTotal1.checked">
+        <div *ngIf="chart[1]">
+        <canvas id="canvasStateBarChart">{{chart[1]}}</canvas>
+        </div>
+    </div>
+
+    <div>
+        <button mat-raised-button routerLink="/charts" >More Information</button>
+      </div>
+
+</div>
+

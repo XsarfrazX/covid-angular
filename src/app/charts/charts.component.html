@@ -1,0 +1,85 @@
+<div class="parent">
+    
+    <div>
+      <div class="button-frame">
+        <mat-button-toggle #toggleBtn1>Overall Status</mat-button-toggle>
+        <iframe
+          *ngIf="toggleBtn1.checked"
+          class="frame"
+          scrolling="no"
+          frameborder="0"
+          seamless
+          [src]="chartLinks[0] | safe"
+        ></iframe>
+      </div>
+    
+      <div class="button-frame">
+        <mat-button-toggle #toggleBtn2
+          >Number of people effect datewise</mat-button-toggle
+        >
+        <iframe
+          *ngIf="toggleBtn2.checked"
+          class="frame"
+          scrolling="no"
+          frameborder="0"
+          seamless
+          [src]="chartLinks[1] | safe"
+        ></iframe>
+      </div>
+    
+      <div class="button-frame">
+        <mat-button-toggle #toggleBtn3>Increase per Day</mat-button-toggle>
+        <iframe
+          *ngIf="toggleBtn3.checked"
+          class="frame"
+          scrolling="no"
+          frameborder="0"
+          seamless
+          [src]="chartLinks[2] | safe"
+        ></iframe>
+      </div>
+    
+      <div class="button-frame">
+        <mat-button-toggle #toggleBtn4
+          >Total confirmed cases in different States/UT</mat-button-toggle
+        >
+        <iframe
+          *ngIf="toggleBtn4.checked"
+          class="frame"
+          scrolling="no"
+          frameborder="0"
+          seamless
+          [src]="chartLinks[3] | safe"
+        ></iframe>
+      </div>
+    
+      <div class="button-frame">
+        <mat-button-toggle #toggleBtn5>Cured patients Statewise</mat-button-toggle>
+        <iframe
+          *ngIf="toggleBtn5.checked"
+          class="frame"
+          scrolling="no"
+          frameborder="0"
+          seamless
+          [src]="chartLinks[4] | safe"
+        ></iframe>
+      </div>
+    
+      <div class="button-frame">
+        <mat-button-toggle #toggleBtn6>Deaths Statewise</mat-button-toggle>
+        <iframe
+          *ngIf="toggleBtn6.checked"
+          class="frame"
+          scrolling="no"
+          frameborder="0"
+          seamless
+          [src]="chartLinks[5] | safe"
+        ></iframe>
+      </div>
+      <div>
+      <button mat-raised-button routerLink="/more-charts" >Home</button>
+    </div>
+    </div>
+    
+    
+    </div>
