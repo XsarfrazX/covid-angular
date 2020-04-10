@@ -149,7 +149,8 @@ export class MoreChartsComponent implements OnInit {
         title:{
           display:true,
           text: "All india status"
-        }}
+        }
+      }
     })
 
   }
@@ -202,6 +203,13 @@ export class MoreChartsComponent implements OnInit {
         title:{
           display:true,
           text: "Statewise data"
+        },
+        
+        scales:{
+          yAxis:[{
+            barPercentage: 0.5,
+            categoryPercentage: 0.5
+          }]
         }
       }
     })

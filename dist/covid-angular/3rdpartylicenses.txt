@@ -89,6 +89,10 @@ THE SOFTWARE.
 
 @angular/material/button-toggle
 
+@angular/material/table
+
+@angular/material/tabs
+
 @angular/platform-browser
 MIT
 
